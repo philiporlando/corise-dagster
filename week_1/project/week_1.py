@@ -13,6 +13,7 @@ from dagster import (
     usable_as_dagster_type,
 )
 from pydantic import BaseModel
+from operator import attrgetter
 
 
 @usable_as_dagster_type(description="Stock data")
@@ -58,7 +59,7 @@ def get_s3_data_op(context) -> List[Stock]:
 
 @op(ins={"stocks": In(dagster_type=List[Stock], description="Return the Aggregation with the highest stock price")})
 def process_data_op(context, stocks) -> Aggregation:
-    highest_stock = max(stocks, key=lambda stock: stock.high)
+    highest_stock = max(stocks, key=attrgetter("high"))
     return Aggregation(date=highest_stock.date, high=highest_stock.high)
     
 
