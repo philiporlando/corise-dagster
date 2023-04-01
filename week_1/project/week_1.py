@@ -59,7 +59,7 @@ def get_s3_data_op(context) -> List[Stock]:
 @op(ins={"stocks": In(dagster_type=List[Stock], description="Return the Aggregation with the highest stock price")})
 def process_data_op(context, stocks) -> Aggregation:
     highest_stock = max(stocks, key=lambda stock: stock.high)
-    return Aggregation(date=highest_stock.date, high = highest_stock.high)
+    return Aggregation(date=highest_stock.date, high=highest_stock.high)
     
 
 @op(ins={"aggregation": In(dagster_type=Aggregation, description="Upload an Aggregation to Redis")})
