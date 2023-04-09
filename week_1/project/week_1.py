@@ -78,4 +78,4 @@ def machine_learning_job():
     stocks = get_s3_data_op()
     aggregation = process_data_op(stocks)
     put_redis_data_op(aggregation)
-    # put_s3_data_op()
+    put_s3_data_op(aggregation)
