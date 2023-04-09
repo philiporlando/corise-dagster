@@ -68,8 +68,8 @@ def put_redis_data_op(context, aggregation):
     pass
 
 
-@op
-def put_s3_data_op():
+@op(ins={"aggregation": In(dagster_type=Aggregation, description="Upload an Aggregation to S3")})
+def put_s3_data_op(context, aggregation):
     pass
 
 
