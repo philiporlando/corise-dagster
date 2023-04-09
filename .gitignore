@@ -157,3 +157,6 @@ cython_debug/
 
 # Mac OS
 .DS_Store
+
+# Temp files produced by tests and dagster
+tmp*
