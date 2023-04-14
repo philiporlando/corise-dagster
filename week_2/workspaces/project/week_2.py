@@ -20,6 +20,8 @@ from operator import attrgetter
 @op(
     config_schema={"s3_key": String},
     required_resource_keys={"s3"},
+    # ins=In(Nothing), # this throws an error...
+    ins={"start": In(Nothing)},
     out={"stocks": Out(dagster_type=List[Stock])},
     description="Get a list of stocks from an S3 file.",
     )
