@@ -97,8 +97,9 @@ machine_learning_job_local = machine_learning_graph.to_job(
     config=local,
     resource_defs={
         # why wouldn't I use the mock_s3_resource() here?
-        # "s3": mock_s3_resource(),
-        "s3": ResourceDefinition.mock_resource(),
+        "s3": mock_s3_resource,
+        # "s3": mock_s3_resource(), # this doesn't work
+        # "s3": ResourceDefinition.mock_resource(),
         "redis": ResourceDefinition.mock_resource()
         }
 )
