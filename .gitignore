@@ -160,3 +160,6 @@ cython_debug/
 
 # Temp files produced by tests and dagster
 tmp*
+
+# VS Code IDE Settings
+.vscode
