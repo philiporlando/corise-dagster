@@ -20,16 +20,12 @@ from operator import attrgetter
 @op(
     config_schema={"s3_key": String},
     required_resource_keys={"s3"},
-    # ins=In(Nothing), # this throws an error...
-    ins={"start": In(Nothing)},
     out={"stocks": Out(dagster_type=List[Stock])},
     description="Get a list of stocks from an S3 file.",
     )
 def get_s3_data(context):
     s3_key = context.op_config["s3_key"]
     stocks = context.resources.s3.get_data(key_name=s3_key)
-    # Convert each element to our custom Stock data type
-    # stocks = [Stock.from_list(stock) for stock in stocks]
     stocks = list(map(Stock.from_list, stocks))
     return stocks
 
@@ -83,7 +79,6 @@ local = {
     "ops": {"get_s3_data": {"config": {"s3_key": S3_FILE}}},
 }
 
-# I'm not following what's going on with this dict
 docker = {
     "resources": {
         "s3": {"config": S3},
@@ -96,10 +91,7 @@ machine_learning_job_local = machine_learning_graph.to_job(
     name="machine_learning_job_local",
     config=local,
     resource_defs={
-        # why wouldn't I use the mock_s3_resource() here?
         "s3": mock_s3_resource,
-        # "s3": mock_s3_resource(), # this doesn't work
-        # "s3": ResourceDefinition.mock_resource(),
         "redis": ResourceDefinition.mock_resource()
         }
 )
