@@ -89,8 +89,8 @@ services:
       POSTGRES_PASSWORD: "postgres_password"
     profiles:
       - dagster
-    volumes:
-      - ./${COURSE_WEEK}/postgres-dagster:/var/lib/postgresql/data
+    # volumes:
+    #   - ./${COURSE_WEEK}/postgres-dagster:/var/lib/postgresql/data
     networks:
       - dagster_network
 
