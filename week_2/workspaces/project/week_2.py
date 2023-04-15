@@ -63,7 +63,7 @@ def put_redis_data(context, aggregation):
 def put_s3_data(context, aggregation):
     context.resources.s3.put_data(
         key_name=String(aggregation.date),
-        value=aggregation.high
+        data=aggregation
         )
 
 
