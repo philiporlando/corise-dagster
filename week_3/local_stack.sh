@@ -14,3 +14,4 @@ aws --endpoint-url=$ENDPOINT_URL s3 cp data/stock_7.csv s3://dagster/prefix/stoc
 aws --endpoint-url=$ENDPOINT_URL s3 cp data/stock_8.csv s3://dagster/prefix/stock_8.csv
 aws --endpoint-url=$ENDPOINT_URL s3 cp data/stock_9.csv s3://dagster/prefix/stock_9.csv
 aws --endpoint-url=$ENDPOINT_URL s3 cp data/stock_10.csv s3://dagster/prefix/stock_10.csv
+aws --endpoint-url=$ENDPOINT_URL s3 cp data/stock_11.csv s3://dagster/prefix/stock_11.csv
