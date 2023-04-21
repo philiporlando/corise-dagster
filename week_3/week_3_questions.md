@@ -1,5 +1,7 @@
-* Why do the local config dicts use "prefix/stock_9.csv" instead of "data/stock_9.csv"?
+* Why do the local config dicts use "prefix/stock_9.csv" instead of "data/stock_9.csv"? Ok, I'm realizing that this is how localstack is being configured.
 * Should the bucket, prefix, and endpoint_url params within the machine_learning_sensor_docker definition be passed in as config, or hardcoded? I'm struggling to see how they can be passed in via config... context.op_config seems wrong...
 * What should the body of the machine_learning_schedule_docker definition look like? I ran a test without defining anything and it worked after defining the schedule decorator... 
 * Why should we use build_schedule_from_partitioned_job instead of our sensor function definition?
 * Why are we defining the static docker config dictionary if we are only using the docker_config() function?
+* It's not clear how I should be launching a run of the machine_learning_job_docker job. Dagit is prompting me to scaffold missing config when launching manually, and then fails because the default config is invalid. I set the cron schedule to every minute as a workaround. 
+* What should the workflow be to add a stock_11.csv file and observe the new partition running in dagit? make restart_project does not seem to be working... I've already updated the local_stack.sh to copy this new file over to the endpoint.
