@@ -98,19 +98,6 @@ local = {
 }
 
 
-docker = {
-    "resources": {
-        "s3": {"config": S3},
-        "redis": {"config": REDIS},
-    },
-    "ops": {
-        "get_s3_data": {
-            "config": {"s3_key": "prefix/stock_9.csv"},
-        },
-    },
-}
-
-
 @static_partitioned_config(partition_keys=list(map(String, range(1, 11))))
 def docker_config(partition_key: String):
     return {
@@ -153,6 +140,7 @@ machine_learning_schedule_local = ScheduleDefinition(
 # Run at the beginning of every hour
 @schedule(job=machine_learning_job_docker, cron_schedule="0 * * * *")
 def machine_learning_schedule_docker():
+    # TODO add function definition here
     ...
 
 
