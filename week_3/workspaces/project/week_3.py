@@ -140,8 +140,10 @@ machine_learning_schedule_local = ScheduleDefinition(
 # Run at the beginning of every hour
 @schedule(job=machine_learning_job_docker, cron_schedule="0 * * * *")
 def machine_learning_schedule_docker():
-    # TODO add function definition here
-    ...
+    for partition_key in docker_config.get_partition_keys():
+        yield RunRequest(
+            run_key=partition_key, run_config=docker_config.get_run_config_for_partition_key(partition_key)
+        )
 
 
 @sensor(job=machine_learning_job_docker, minimum_interval_seconds=30)
