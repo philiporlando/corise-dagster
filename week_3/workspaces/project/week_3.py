@@ -161,7 +161,7 @@ def machine_learning_sensor_docker(context):
     new_s3_keys = get_s3_keys(
         bucket="dagster",
         prefix="prefix",
-        endpoint_url="http/localstack:4566",
+        endpoint_url="http://localstack:4566",
     )
     if not new_s3_keys:
         yield SkipReason("No new s3 files found in bucket.")
