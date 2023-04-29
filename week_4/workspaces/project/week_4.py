@@ -20,7 +20,7 @@ from workspaces.resources import mock_s3_resource, redis_resource, s3_resource
     config_schema={"s3_key": String},
     required_resource_keys={"s3"},
     description="Get a list of stocks from an S3 file.",
-    # tags={"kind": "s3"},
+    op_tags={"kind": "s3"},
 )
 def get_s3_data(context):
     s3_key = context.op_config["s3_key"]
@@ -43,7 +43,7 @@ def process_data(context, get_s3_data):
 @asset(
     required_resource_keys={"redis"},
     description="Upload an Aggregation to Redis",
-    # tags={"kind": "redis"},
+    op_tags={"kind": "redis"},
 )
 def put_redis_data(context, process_data):
     name = String(process_data.date)
@@ -55,7 +55,7 @@ def put_redis_data(context, process_data):
 @asset(
     required_resource_keys={"s3"},
     description="Upload an Aggregation to S3",
-    # tags={"kind": "s3"},
+    op_tags={"kind": "s3"},
 )
 def put_s3_data(context, process_data):
     key_name = String(process_data.date)
@@ -76,8 +76,8 @@ local_config = {
 
 machine_learning_asset_job = define_asset_job(
     name="machine_learning_asset_job",
-    selection=project_assets,
-    # selection=AssetSelection.all(),
+    # selection=project_assets,
+    selection=AssetSelection.all(),
     config=local_config,
 )
 
