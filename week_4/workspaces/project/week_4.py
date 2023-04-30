@@ -76,8 +76,7 @@ local_config = {
 
 machine_learning_asset_job = define_asset_job(
     name="machine_learning_asset_job",
-    # selection=project_assets,
-    selection=AssetSelection.all(),
+    selection=project_assets,
     config=local_config,
 )
 
